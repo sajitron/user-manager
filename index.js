@@ -5,6 +5,11 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 
+//@TODO
+//require models
+require('./services/passport');
+require('./services/cache');
+
 mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI, {
 	useNewUrlParser: true
@@ -23,7 +28,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-if ([ 'production', 'ci' ].includes(process.env.NODE_ENV)) {
+if ([ 'production' ].includes(process.env.NODE_ENV)) {
 	app.use(express.static('client/build'));
 
 	const path = require('path');
