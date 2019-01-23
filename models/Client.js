@@ -24,13 +24,13 @@ const clientSchema = new Schema({
 	},
 	groups: [
 		{
-			type: mongoose.Schema.Types.ObjectId,
+			type: Schema.Types.ObjectId,
 			ref: 'group'
 		}
 	],
 	createdAt: {
 		type: Date,
-		default: Date.now
+		default: Date.now().toString()
 	}
 });
 
