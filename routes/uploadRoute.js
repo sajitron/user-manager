@@ -2,6 +2,7 @@ const cloudinary = require('cloudinary');
 const multer = require('multer');
 const cloudinaryStorage = require('multer-storage-cloudinary');
 const keys = require('../config/keys');
+const { requireLogin } = require('../middlewares');
 
 cloudinary.config({
 	cloud_name: keys.cloud_name,
@@ -19,7 +20,7 @@ const storage = cloudinaryStorage({
 const parser = multer({ storage });
 
 module.exports = (app) => {
-	app.post('/api/upload', parser.single('image'), (req, res) => {
+	app.post('/api/upload', requireLogin, parser.single('image'), (req, res) => {
 		console.log(req.file);
 		const image = {};
 		image.url = req.file.url;

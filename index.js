@@ -34,7 +34,7 @@ app.use(passport.session());
 //@TODO
 // import routes
 require('./routes/authRoutes')(app);
-// require('./routes/clientRoutes')(app);
+require('./routes/clientRoutes')(app);
 require('./routes/groupRoutes')(app);
 
 if ([ 'production' ].includes(process.env.NODE_ENV)) {

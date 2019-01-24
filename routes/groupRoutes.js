@@ -6,7 +6,7 @@ const Group = mongoose.model('group');
 // @TODO
 // Add requireLogin and cleanCache middlewares
 module.exports = (app) => {
-	app.post('/api/groups', async (req, res) => {
+	app.post('/api/groups', requireLogin, async (req, res) => {
 		const { name, description } = req.body;
 
 		const group = new Group({
@@ -43,7 +43,7 @@ module.exports = (app) => {
 		}
 	});
 
-	app.delete('/api/groups/:id', async (req, res) => {
+	app.delete('/api/groups/:id', requireLogin, async (req, res) => {
 		const groupId = req.params.id;
 
 		try {
