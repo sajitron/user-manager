@@ -4,7 +4,8 @@ const { Schema } = mongoose;
 const groupSchema = new Schema({
 	name: {
 		type: String,
-		required: true
+		required: true,
+		unique: true
 	},
 	description: {
 		type: String,
@@ -21,3 +22,5 @@ const groupSchema = new Schema({
 		default: Date.now().toString()
 	}
 });
+
+mongoose.model('group', groupSchema);

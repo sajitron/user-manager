@@ -35,7 +35,7 @@ app.use(passport.session());
 // import routes
 require('./routes/authRoutes')(app);
 // require('./routes/clientRoutes')(app);
-// require('./routes/groupRoutes')(app);
+require('./routes/groupRoutes')(app);
 
 if ([ 'production' ].includes(process.env.NODE_ENV)) {
 	app.use(express.static('client/build'));
