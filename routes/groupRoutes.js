@@ -22,7 +22,7 @@ module.exports = (app) => {
 		}
 	});
 
-	app.get('/api/groups', requireLogin, async (req, res) => {
+	app.get('/api/groups', requireLogin, cleanCache, async (req, res) => {
 		const groups = await Group.find({});
 		try {
 			res.status(200).send(groups);
