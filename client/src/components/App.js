@@ -6,6 +6,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
+import PageNotFound from './PageNotFound';
 
 class App extends PureComponent {
 	componentDidMount() {
@@ -21,6 +22,7 @@ class App extends PureComponent {
 						<Switch>
 							<Route path="/" component={Landing} />
 							<Route path="/dashboard" component={Dashboard} />
+							<Route component={PageNotFound} />
 						</Switch>
 					</div>
 				</BrowserRouter>
