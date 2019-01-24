@@ -9,31 +9,38 @@ export class Header extends PureComponent {
 				return;
 			case false:
 				return (
-					<li className="nav-item px-2">
-						<Link to="/auth/google">Sign In With Google</Link>
+					<li className="nav-item px-2 ml-auto">
+						<a href={'/auth/google'} className="nav-link active">
+							Sign In With Google
+						</a>
 					</li>
 				);
 			default:
 				return [
-					<li className="nav-item px-2">
+					<li key="1" className="nav-item px-2">
 						<Link to="/dashboard" className="nav-link active">
 							Dashboard
 						</Link>
 					</li>,
-					<li className="nav-item px-2">
+					<li key="2" className="nav-item px-2">
 						<Link to="/group" className="nav-link active">
 							Add Group
 						</Link>
 					</li>,
-					<li className="nav-item px-2">
+					<li key="3" className="nav-item px-2">
 						<Link to="/client" className="nav-link active">
 							Add Client
 						</Link>
 					</li>,
-					<li className="nav-item px-2">
+					<li key="4" className="nav-item px-2">
 						<Link to="/extra" className="nav-link active">
 							Extras
 						</Link>
+					</li>,
+					<li key="5" className="nav-item px-2">
+						<a href={'/api/logout'} className="nav-link active">
+							Sign Out
+						</a>
 					</li>
 				];
 		}

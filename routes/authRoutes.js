@@ -9,12 +9,12 @@ module.exports = (app) => {
 	);
 
 	app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
-		res.send('Logged In');
+		res.redirect('/dashboard');
 	});
 
 	app.get('/api/logout', (req, res) => {
 		req.logout();
-		res.end('Logged out');
+		res.redirect('/');
 	});
 
 	app.get('/api/current_user', (req, res) => {

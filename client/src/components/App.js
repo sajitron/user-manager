@@ -20,7 +20,7 @@ class App extends PureComponent {
 					<div>
 						<Header />
 						<Switch>
-							<Route path="/" component={Landing} />
+							<Route exact path="/" component={Landing} />
 							<Route path="/dashboard" component={Dashboard} />
 							<Route component={PageNotFound} />
 						</Switch>
