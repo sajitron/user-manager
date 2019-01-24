@@ -22,6 +22,15 @@ module.exports = (app) => {
 		}
 	});
 
+	app.get('/api/groups', requireLogin, async (req, res) => {
+		const groups = await Group.find({});
+		try {
+			res.status(200).send(groups);
+		} catch (error) {
+			res.status(500).send(error);
+		}
+	});
+
 	app.delete('/api/groups/:id', async (req, res) => {
 		const groupId = req.params.id;
 
