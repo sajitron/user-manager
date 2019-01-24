@@ -7,6 +7,9 @@ const keys = require('./config/keys');
 
 //@TODO
 //require models
+require('./models/User');
+require('./models/Client');
+require('./models/Group');
 require('./services/passport');
 require('./services/cache');
 
@@ -27,6 +30,12 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+//@TODO
+// import routes
+require('./routes/authRoutes')(app);
+// require('./routes/clientRoutes')(app);
+// require('./routes/groupRoutes')(app);
 
 if ([ 'production' ].includes(process.env.NODE_ENV)) {
 	app.use(express.static('client/build'));
