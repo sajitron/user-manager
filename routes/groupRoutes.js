@@ -27,7 +27,19 @@ module.exports = (app) => {
 		try {
 			res.status(200).send(groups);
 		} catch (error) {
-			res.status(500).send(error);
+			res.status(400).send(error);
+		}
+	});
+
+	app.get('/api/groups/:id', requireLogin, async (req, res) => {
+		const groupId = req.params.id;
+
+		const group = await Group.findById(groupId);
+
+		try {
+			res.status(200).send(group);
+		} catch (error) {
+			res.status(400).send(error);
 		}
 	});
 
@@ -38,7 +50,7 @@ module.exports = (app) => {
 			const group = await Group.findByIdAndRemove(groupId);
 			res.status(200).send(group);
 		} catch (error) {
-			res.status(500).send(error);
+			res.status(400).send(error);
 		}
 	});
 };
