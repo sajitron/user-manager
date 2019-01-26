@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import GroupField from './GroupField';
 import formFields from './formFields';
 
-export class GroupForm extends PureComponent {
+class GroupForm extends PureComponent {
 	renderFields() {
 		return _.map(formFields, ({ label, name }) => {
 			return <Field key={name} component={GroupField} type="text" label={label} name={name} />;

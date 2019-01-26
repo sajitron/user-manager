@@ -6,6 +6,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
+import GroupNew from './groups/GroupNew';
 import PageNotFound from './PageNotFound';
 
 class App extends PureComponent {
@@ -22,6 +23,7 @@ class App extends PureComponent {
 						<Switch>
 							<Route exact path="/" component={Landing} />
 							<Route path="/dashboard" component={Dashboard} />
+							<Route path="/groups/new" component={GroupNew} />
 							<Route component={PageNotFound} />
 						</Switch>
 					</div>

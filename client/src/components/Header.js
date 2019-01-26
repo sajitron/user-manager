@@ -23,12 +23,12 @@ export class Header extends PureComponent {
 						</Link>
 					</li>,
 					<li key="2" className="nav-item px-2">
-						<Link to="/group" className="nav-link active">
+						<Link to="/groups/new" className="nav-link active">
 							Add Group
 						</Link>
 					</li>,
 					<li key="3" className="nav-item px-2">
-						<Link to="/client" className="nav-link active">
+						<Link to="/clients/new" className="nav-link active">
 							Add Client
 						</Link>
 					</li>,
