@@ -1,7 +1,12 @@
 import React from 'react';
+import GroupList from './groups/GroupList';
 
 const Dashboard = () => {
-	return <div>Welcome to the Dashboard</div>;
+	return (
+		<div>
+			<GroupList />
+		</div>
+	);
 };
 
 export default Dashboard;
