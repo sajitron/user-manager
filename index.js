@@ -8,7 +8,7 @@ const keys = require('./config/keys');
 //@TODO
 //require models
 require('./models/User');
-require('./models/Client');
+require('./models/Member');
 require('./models/Group');
 require('./services/passport');
 require('./services/cache');
@@ -34,7 +34,7 @@ app.use(passport.session());
 //@TODO
 // import routes
 require('./routes/authRoutes')(app);
-require('./routes/clientRoutes')(app);
+require('./routes/memberRoutes')(app);
 require('./routes/groupRoutes')(app);
 
 if ([ 'production' ].includes(process.env.NODE_ENV)) {

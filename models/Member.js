@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const clientSchema = new Schema({
+const memberSchema = new Schema({
 	firstName: {
 		type: String,
 		required: true,
@@ -34,4 +34,4 @@ const clientSchema = new Schema({
 	}
 });
 
-mongoose.model('client', clientSchema);
+mongoose.model('member', memberSchema);

@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const { requireLogin, cleanCache } = require('../middlewares');
 
-const Client = mongoose.model('client');
+const Member = mongoose.model('member');
 
 // @TODO add requireLogin
 module.exports = (app) => {
 	app.post('/api/clients', async (req, res) => {
 		const { firstName, lastName, birthDate, imageUrl, email } = req.body;
 
-		const client = new Client({
+		const member = new Member({
 			firstName,
 			lastName,
 			email,
@@ -17,8 +17,8 @@ module.exports = (app) => {
 		});
 
 		try {
-			await client.save();
-			res.status(200).send(client);
+			await member.save();
+			res.status(200).send(member);
 		} catch (error) {
 			res.status(400).send(error);
 		}
