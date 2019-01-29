@@ -5,7 +5,7 @@ const Member = mongoose.model('member');
 
 // @TODO add requireLogin
 module.exports = (app) => {
-	app.post('/api/clients', async (req, res) => {
+	app.post('/api/members', async (req, res) => {
 		const { firstName, lastName, birthDate, imageUrl, email } = req.body;
 
 		const member = new Member({
