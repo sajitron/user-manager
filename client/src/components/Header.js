@@ -28,8 +28,8 @@ export class Header extends PureComponent {
 						</Link>
 					</li>,
 					<li key="3" className="nav-item px-2">
-						<Link to="/clients/new" className="nav-link active">
-							Add Client
+						<Link to="/members/new" className="nav-link active">
+							Add Member
 						</Link>
 					</li>,
 					<li key="4" className="nav-item px-2">
