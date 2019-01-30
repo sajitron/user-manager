@@ -7,6 +7,7 @@ import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
 import GroupNew from './groups/GroupNew';
+import MemberNew from './members/MemberNew';
 import PageNotFound from './PageNotFound';
 
 class App extends PureComponent {
@@ -24,6 +25,7 @@ class App extends PureComponent {
 							<Route exact path="/" component={Landing} />
 							<Route path="/dashboard" component={Dashboard} />
 							<Route path="/groups/new" component={GroupNew} />
+							<Route path="/members/new" component={MemberNew} />
 							<Route component={PageNotFound} />
 						</Switch>
 					</div>
