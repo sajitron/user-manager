@@ -10,7 +10,7 @@ export class GroupList extends PureComponent {
 	renderGroups() {
 		return this.props.groups.reverse().map((group) => {
 			return (
-				<div>
+				<div key={group._id}>
 					<h1>{group.name}</h1>
 					<p>{group.description}</p>
 				</div>

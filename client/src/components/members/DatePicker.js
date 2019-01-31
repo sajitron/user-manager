@@ -24,6 +24,7 @@ class DatePicker extends PureComponent {
 				<SingleDatePicker
 					showClearDate
 					showDefaultInputIcon
+					isOutsideRange={() => false}
 					displayFormat="YYYY-MM-DD"
 					numberOfMonths={1}
 					placeholder={placeholder}

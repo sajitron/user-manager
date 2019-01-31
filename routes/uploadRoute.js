@@ -22,10 +22,10 @@ const parser = multer({ storage });
 module.exports = (app) => {
 	app.post('/api/upload', requireLogin, parser.single('image'), (req, res) => {
 		console.log(req.file);
-		const image = {};
-		image.url = req.file.url;
-		image.id = req.file.public_id;
+		// const image = {};
+		// image.url = req.file.url;
+		// image.id = req.file.public_id;
 
-		res.send(image);
+		res.send(req.file);
 	});
 };
