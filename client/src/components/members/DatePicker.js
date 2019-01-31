@@ -4,10 +4,6 @@ import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
 
 class DatePicker extends PureComponent {
-	constructor(props) {
-		super(props);
-	}
-
 	state = {
 		focused: false
 	};
@@ -19,7 +15,7 @@ class DatePicker extends PureComponent {
 	};
 
 	render() {
-		const { input, meta: { touched, error }, placeholder } = this.props;
+		const { input, meta: { touched, error }, placeholder, required } = this.props;
 
 		const { focused } = this.state;
 
@@ -36,6 +32,7 @@ class DatePicker extends PureComponent {
 					focused={focused}
 					onFocusChange={this.onFocusChange}
 					id={input.name}
+					required={required}
 				/>
 				<div>{touched && error}</div>
 			</Fragment>

@@ -25,6 +25,7 @@ export class MemberForm extends Component {
 						placeholder="Date of Birth"
 						parse={normalizeDates}
 						format={formatDates}
+						required
 					/>
 					<Link to="/dashboard">Cancel</Link>
 					<button type="submit">Next</button>
