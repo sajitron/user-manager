@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import MemberField from './MemberField';
 import validateEmails from '../../utils/validateEmails';
 import formFields from './formFields';
+import DatePicker, { formatDates, normalizeDates } from './DatePicker';
 
 export class MemberForm extends Component {
 	renderFields() {
@@ -18,6 +19,13 @@ export class MemberForm extends Component {
 			<div>
 				<form onSubmit={this.props.handleSubmit(this.props.onMemberSubmit)}>
 					{this.renderFields()}
+					<Field
+						name="birthDate"
+						component={DatePicker}
+						placeholder="Date of Birth"
+						parse={normalizeDates}
+						format={formatDates}
+					/>
 					<Link to="/dashboard">Cancel</Link>
 					<button type="submit">Next</button>
 				</form>
