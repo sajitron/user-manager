@@ -1,18 +1,18 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import _ from 'lodash';
+import axios from 'axios';
 import { connect } from 'react-redux';
 // @TODO import withRouter
 import formFields from './formFields';
 import * as actions from '../../actions';
 
 class MemberFormReview extends PureComponent {
-	constructor(props) {
-		super(props);
-	}
+	state = {
+		selectedFile: null
+	};
 
 	reviewFields() {
 		console.log(this.props.formValues);
-		console.log(this.props);
 		const reviewFields = _.map(formFields, ({ name, label }) => {
 			return (
 				<div key={name}>
@@ -24,6 +24,19 @@ class MemberFormReview extends PureComponent {
 		return reviewFields;
 	}
 
+	handleFileSelect = (event) => {
+		this.setState({
+			selectedFile: event.target.files[0]
+		});
+	};
+
+	handleFileUpload = () => {
+		const fd = new FormData();
+		fd.append('file', this.state.selectedFile, this.state.selectedFile.name);
+
+		axios.post('/api/upload', fd).then((res) => console.log(res));
+	};
+
 	render() {
 		return (
 			<div>
@@ -31,6 +44,17 @@ class MemberFormReview extends PureComponent {
 				<div>
 					<label>Date of Birth</label>
 					{this.props.formValues['birthDate']}
+
+					<Fragment>
+						<input type="file" name="image" onChange={this.handleFileSelect} required />
+						{this.state.selectedFile === null ? (
+							<button disabled onClick={this.handleFileUpload}>
+								Upload
+							</button>
+						) : (
+							<button onClick={this.handleFileUpload}>Upload</button>
+						)}
+					</Fragment>
 					<button onClick={this.props.onCancel}>Back</button>
 					<button onClick={() => this.props.submitMember(this.props.formValues, this.props.history)}>
 						Next

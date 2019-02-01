@@ -20,12 +20,12 @@ const storage = cloudinaryStorage({
 const parser = multer({ storage });
 
 module.exports = (app) => {
-	app.post('/api/upload', requireLogin, parser.single('image'), (req, res) => {
-		console.log(req.file);
+	app.post('/api/upload', requireLogin, (req, res) => {
+		console.log(req.files);
 		// const image = {};
 		// image.url = req.file.url;
 		// image.id = req.file.public_id;
 
-		res.send(req.file);
+		res.send('hello');
 	});
 };

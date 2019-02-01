@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+const fileUpload = require('express-fileupload');
 const keys = require('./config/keys');
 
 //@TODO
@@ -20,7 +22,9 @@ mongoose.connect(keys.mongoURI, {
 
 const app = express();
 
+app.use(fileUpload());
 app.use(bodyParser.json());
+app.use(cors());
 app.use(
 	cookieSession({
 		maxAge: 30 * 24 * 60 * 60 * 1000,
