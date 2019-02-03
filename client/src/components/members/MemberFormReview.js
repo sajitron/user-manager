@@ -8,7 +8,8 @@ import * as actions from '../../actions';
 
 class MemberFormReview extends PureComponent {
 	state = {
-		selectedFile: null
+		selectedFile: null,
+		imageUrl: null
 	};
 
 	reviewFields() {
@@ -30,37 +31,46 @@ class MemberFormReview extends PureComponent {
 		});
 	};
 
-	handleFileUpload = () => {
-		const fd = new FormData();
-		fd.append('file', this.state.selectedFile, this.state.selectedFile.name);
+	handleFileUpload = async (e) => {
+		e.preventDefault();
 
-		axios.post('/api/upload', fd).then((res) => console.log(res));
+		const data = new FormData();
+
+		data.append('file', this.state.selectedFile, this.state.selectedFile.name);
+
+		try {
+			const response = await axios.post('/api/upload', data);
+
+			this.setState({ imageUrl: response.data });
+			console.log(this.state.imageUrl);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	render() {
 		return (
-			<div>
+			<Fragment>
 				{this.reviewFields()}
 				<div>
 					<label>Date of Birth</label>
 					{this.props.formValues['birthDate']}
+				</div>
 
-					<Fragment>
+				<Fragment>
+					<form onSubmit={this.handleFileUpload}>
+						<label>Upload Avatar</label>
 						<input type="file" name="image" onChange={this.handleFileSelect} required />
 						{this.state.selectedFile === null ? (
-							<button disabled onClick={this.handleFileUpload}>
-								Upload
-							</button>
+							<button disabled>Upload</button>
 						) : (
-							<button onClick={this.handleFileUpload}>Upload</button>
+							<button type="submit">Upload</button>
 						)}
-					</Fragment>
-					<button onClick={this.props.onCancel}>Back</button>
-					<button onClick={() => this.props.submitMember(this.props.formValues, this.props.history)}>
-						Next
-					</button>
-				</div>
-			</div>
+					</form>
+				</Fragment>
+				<button onClick={this.props.onCancel}>Back</button>
+				<button onClick={() => this.props.submitMember(this.props.formValues, this.props.history)}>Next</button>
+			</Fragment>
 		);
 	}
 }
