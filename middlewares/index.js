@@ -1,7 +1,9 @@
 const requireLogin = require('./requireLogin');
 const cleanCache = require('./cleanCache');
+const cloudinaryConfig = require('./cloudinaryConfig');
 
 module.exports = {
-	requireLogin,
-	cleanCache
+	cleanCache,
+	cloudinaryConfig,
+	requireLogin
 };
