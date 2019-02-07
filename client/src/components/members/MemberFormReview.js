@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import _ from 'lodash';
 import axios from 'axios';
 import { connect } from 'react-redux';
-// @TODO import withRouter
+import { withRouter } from 'react-router-dom';
 import formFields from './formFields';
 import * as actions from '../../actions';
 
@@ -81,4 +81,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(MemberFormReview);
+export default connect(mapStateToProps, actions)(withRouter(MemberFormReview));

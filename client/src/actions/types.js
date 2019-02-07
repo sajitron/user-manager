@@ -1,5 +1,4 @@
 export const FETCH_USER = 'fetch_user';
 export const FETCH_GROUPS = 'fetch_groups';
 export const ADD_USER = 'add_user';
-export const GET_USER = 'get_user';
-export const UPLOAD_IMAGE = 'upload_image';
+export const FETCH_MEMBERS = 'fetch_members';

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_GROUPS, ADD_USER, UPLOAD_IMAGE } from './types';
+import { FETCH_USER, FETCH_GROUPS, FETCH_MEMBERS } from './types';
 
 export const fetchUser = () => async (dispatch) => {
 	const res = await axios.get('/api/current_user');
@@ -23,11 +23,5 @@ export const addUser = (values, history) => async (dispatch) => {
 	const res = await axios.post('/api/members', values);
 
 	history.push('/dashboard');
-	dispatch({ type: ADD_USER, payload: res.data });
-};
-
-export const uploadImage = (values, history) => async (dispatch) => {
-	const res = await axios.post('/api/upload');
-
-	dispatch({ type: UPLOAD_IMAGE, payload: res.data });
+	dispatch({ type: FETCH_MEMBERS, payload: res.data });
 };
