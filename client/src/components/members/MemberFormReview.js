@@ -42,6 +42,7 @@ class MemberFormReview extends PureComponent {
 			const response = await axios.post('/api/upload', data);
 
 			this.setState({ imageUrl: response.data });
+			this.props.formValues['imageUrl'] = this.state.imageUrl.public_id;
 			console.log(this.state.imageUrl, this.props.formValues);
 		} catch (error) {
 			console.log(error);

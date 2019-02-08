@@ -9,9 +9,9 @@ class MemberList extends PureComponent {
 	}
 
 	renderMembers() {
-		return this.props.members.reverse().map(({ firstName, lastName, email, birthDate }) => {
+		return this.props.members.reverse().map(({ _id, firstName, lastName, email, birthDate }) => {
 			return (
-				<Fragment key="member._id">
+				<Fragment key={_id}>
 					<div>
 						<h4>
 							{firstName} {lastName}
