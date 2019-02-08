@@ -23,5 +23,11 @@ export const addMember = (values, history) => async (dispatch) => {
 	const res = await axios.post('/api/members', values);
 
 	history.push('/dashboard');
+	dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const fetchMembers = () => async (dispatch) => {
+	const res = await axios.get('/api/members');
+
 	dispatch({ type: FETCH_MEMBERS, payload: res.data });
 };
