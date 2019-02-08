@@ -23,4 +23,13 @@ module.exports = (app) => {
 			res.status(400).send(error);
 		}
 	});
+
+	app.get('/api/members', requireLogin, async (req, res) => {
+		const members = await Member.find({});
+		try {
+			res.status(200).send(members);
+		} catch (error) {
+			res.status(400).send(error);
+		}
+	});
 };
