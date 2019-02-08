@@ -19,7 +19,7 @@ export const fetchGroups = () => async (dispatch) => {
 	dispatch({ type: FETCH_GROUPS, payload: res.data });
 };
 
-export const addUser = (values, history) => async (dispatch) => {
+export const addMember = (values, history) => async (dispatch) => {
 	const res = await axios.post('/api/members', values);
 
 	history.push('/dashboard');
