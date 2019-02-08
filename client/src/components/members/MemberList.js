@@ -1,6 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { fetchMembers } from '../../actions';
+import moment from 'moment';
 
 class MemberList extends PureComponent {
 	componentDidMount() {
@@ -8,14 +9,15 @@ class MemberList extends PureComponent {
 	}
 
 	renderMembers() {
-		return this.props.members.reverse().map((member) => {
+		return this.props.members.reverse().map(({ firstName, lastName, email, birthDate }) => {
 			return (
 				<Fragment key="member._id">
 					<div>
 						<h4>
-							{member.firstname} {member.lastName}
+							{firstName} {lastName}
 						</h4>
-						<p>{member.email}</p>
+						<p>{email}</p>
+						<p>Born: {moment(birthDate).format('MMMM Do, YYYY')}</p>
 					</div>
 				</Fragment>
 			);

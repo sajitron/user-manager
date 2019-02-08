@@ -42,7 +42,7 @@ class MemberFormReview extends PureComponent {
 			const response = await axios.post('/api/upload', data);
 
 			this.setState({ imageUrl: response.data });
-			console.log(this.state.imageUrl);
+			console.log(this.state.imageUrl, this.props.formValues);
 		} catch (error) {
 			console.log(error);
 		}
@@ -69,7 +69,7 @@ class MemberFormReview extends PureComponent {
 					</form>
 				</Fragment>
 				<button onClick={this.props.onCancel}>Back</button>
-				<button onClick={() => this.props.submitMember(this.props.formValues, this.props.history)}>Next</button>
+				<button onClick={() => this.props.addMember(this.props.formValues, this.props.history)}>Next</button>
 			</Fragment>
 		);
 	}

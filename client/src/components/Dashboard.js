@@ -1,10 +1,16 @@
 import React from 'react';
 import GroupList from './groups/GroupList';
+import MemberList from './members/MemberList';
 
 const Dashboard = () => {
 	return (
 		<div>
-			<GroupList />
+			<div>
+				<GroupList />
+			</div>
+			<div>
+				<MemberList />
+			</div>
 		</div>
 	);
 };
