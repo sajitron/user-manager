@@ -7,7 +7,6 @@ import moment from 'moment';
 class MemberList extends PureComponent {
 	componentDidMount() {
 		this.props.fetchMembers();
-		console.log(process.env.CLOUDINARY_CLOUD_NAME);
 	}
 
 	renderMembers() {

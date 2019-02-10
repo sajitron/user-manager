@@ -9,7 +9,8 @@ import * as actions from '../../actions';
 class MemberFormReview extends PureComponent {
 	state = {
 		selectedFile: null,
-		imageUrl: null
+		imageUrl: null,
+		imageUpload: null
 	};
 
 	reviewFields() {
@@ -41,7 +42,7 @@ class MemberFormReview extends PureComponent {
 		try {
 			const response = await axios.post('/api/upload', data);
 
-			this.setState({ imageUrl: response.data });
+			this.setState({ imageUrl: response.data, imageUpload: 'Image Uploaded Successfully' });
 			this.props.formValues['imageUrl'] = this.state.imageUrl.public_id;
 			console.log(this.state.imageUrl, this.props.formValues);
 		} catch (error) {
@@ -59,6 +60,7 @@ class MemberFormReview extends PureComponent {
 				</div>
 
 				<Fragment>
+					<h3>{this.state.imageUpload && this.state.imageUpload}</h3>
 					<form onSubmit={this.handleFileUpload}>
 						<label>Upload Avatar</label>
 						<input type="file" name="image" onChange={this.handleFileSelect} required />
