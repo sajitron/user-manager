@@ -23,7 +23,7 @@ module.exports = (app) => {
 	});
 
 	app.get('/api/groups', requireLogin, cleanCache, async (req, res) => {
-		const groups = await Group.find({});
+		const groups = await Group.find({}).sort({ name: 1 });
 		try {
 			res.status(200).send(groups);
 		} catch (error) {
