@@ -1,12 +1,12 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Image } from 'cloudinary-react';
-import { fetchMembers } from '../../actions';
+import { fetchSomeMembers } from '../../actions';
 import moment from 'moment';
 
 class MemberList extends PureComponent {
 	componentDidMount() {
-		this.props.fetchMembers();
+		this.props.fetchSomeMembers();
 	}
 
 	renderMembers() {
@@ -53,4 +53,4 @@ function mapStateToProps({ members }) {
 	};
 }
 
-export default connect(mapStateToProps, { fetchMembers })(MemberList);
+export default connect(mapStateToProps, { fetchSomeMembers })(MemberList);

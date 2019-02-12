@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { fetchGroups } from '../../actions';
+import { fetchSomeGroups } from '../../actions';
 
 export class GroupList extends PureComponent {
 	componentDidMount() {
-		this.props.fetchGroups();
+		this.props.fetchSomeGroups();
 	}
 
 	renderGroups() {
@@ -29,7 +29,7 @@ function mapStateToProps({ groups }) {
 	};
 }
 
-export default connect(mapStateToProps, { fetchGroups })(GroupList);
+export default connect(mapStateToProps, { fetchSomeGroups })(GroupList);
 
 // fetchGroups in the connect function is the exported function from the action file which was imported at the top of the file
 
