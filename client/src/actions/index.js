@@ -13,6 +13,12 @@ export const submitGroup = (values, history) => async (dispatch) => {
 	dispatch({ type: FETCH_USER, payload: res.data });
 };
 
+export const fetchSomeGroups = () => async (dispatch) => {
+	const res = await axios.get('/api/somegroups');
+
+	dispatch({ type: FETCH_GROUPS, payload: res.data });
+};
+
 export const fetchGroups = () => async (dispatch) => {
 	const res = await axios.get('/api/groups');
 
@@ -24,6 +30,12 @@ export const addMember = (values, history) => async (dispatch) => {
 
 	history.push('/dashboard');
 	dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const fetchSomeMembers = () => async (dispatch) => {
+	const res = await axios.get('/api/somemembers');
+
+	dispatch({ type: FETCH_MEMBERS, payload: res.data });
 };
 
 export const fetchMembers = () => async (dispatch) => {
