@@ -15,12 +15,21 @@ class MemberList extends PureComponent {
 				<Fragment key={_id}>
 					<div>
 						<Fragment>
-							<Image
-								cloudName={process.env.REACT_APP_CLOUD_NAME}
-								publicId={imageUrl}
-								width="100"
-								crop="scale"
-							/>
+							{imageUrl ? (
+								<Image
+									cloudName={process.env.REACT_APP_CLOUD_NAME}
+									publicId={imageUrl}
+									width="100"
+									crop="scale"
+								/>
+							) : (
+								<Image
+									cloudName={process.env.REACT_APP_CLOUD_NAME}
+									publicId={process.env.REACT_APP_PUBLIC_ID}
+									width="100"
+									crop="scale"
+								/>
+							)}
 						</Fragment>
 						<h4>
 							{firstName} {lastName}
