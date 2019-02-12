@@ -40,6 +40,7 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 require('./routes/memberRoutes')(app);
 require('./routes/groupRoutes')(app);
+require('./routes/dashboardRoutes')(app);
 require('./routes/uploadRoute')(app);
 
 if ([ 'production' ].includes(process.env.NODE_ENV)) {

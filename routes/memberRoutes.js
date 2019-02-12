@@ -5,7 +5,7 @@ const Member = mongoose.model('member');
 
 // @TODO add requireLogin
 module.exports = (app) => {
-	app.post('/api/members', async (req, res) => {
+	app.post('/api/members', requireLogin, async (req, res) => {
 		const { firstName, lastName, birthDate, imageUrl, email } = req.body;
 
 		const member = new Member({
@@ -24,7 +24,7 @@ module.exports = (app) => {
 		}
 	});
 
-	app.get('/api/members', requireLogin, async (req, res) => {
+	app.get('/api/members', requireLogin, cleanCache, async (req, res) => {
 		const members = await Member.find({});
 		try {
 			res.status(200).send(members);
