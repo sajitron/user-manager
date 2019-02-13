@@ -1,5 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Image } from 'cloudinary-react';
 import { fetchSomeMembers } from '../../actions';
 import moment from 'moment';
@@ -31,9 +32,11 @@ class MemberList extends PureComponent {
 								/>
 							)}
 						</Fragment>
-						<h4>
-							{firstName} {lastName}
-						</h4>
+						<Link to={`/members/${_id}`}>
+							<h4>
+								{firstName} {lastName}
+							</h4>
+						</Link>
 						<p>{email}</p>
 						<p>Born: {moment(birthDate).format('MMMM Do, YYYY')}</p>
 					</div>
