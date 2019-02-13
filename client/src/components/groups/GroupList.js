@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchSomeGroups } from '../../actions';
 
 export class GroupList extends PureComponent {
@@ -8,11 +9,13 @@ export class GroupList extends PureComponent {
 	}
 
 	renderGroups() {
-		return this.props.groups.reverse().map((group) => {
+		return this.props.groups.reverse().map(({ _id, name, description }) => {
 			return (
-				<div key={group._id}>
-					<h1>{group.name}</h1>
-					<p>{group.description}</p>
+				<div key={_id}>
+					<Link to={`/groups/${_id}`}>
+						<h1>{name}</h1>
+					</Link>
+					<p>{description}</p>
 				</div>
 			);
 		});
