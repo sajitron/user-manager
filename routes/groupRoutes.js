@@ -44,6 +44,35 @@ module.exports = (app) => {
 		}
 	});
 
+	// fetch groups that user is not a member
+	app.get('/api/membergroups/:id', async (req, res) => {
+		let memberid = req.params.id;
+
+		let member = await Member.findById(memberid);
+
+		let allGroups = await Group.find({});
+		let groups = await Group.find({ _id: { $in: member.groups } });
+
+		let uniqArr1 = allGroups.filter((obj) => {
+			return !groups.some((obj2) => {
+				return obj.name == obj2.name;
+			});
+		});
+
+		let uniqArr2 = groups.filter((obj) => {
+			return !allGroups.some((obj2) => {
+				return obj.name == obj2.name;
+			});
+		});
+
+		let result = uniqArr1.concat(uniqArr2);
+		try {
+			res.status(200).send(result);
+		} catch (error) {
+			res.status(400).send(error);
+		}
+	});
+
 	// add member to group
 	app.get('/api/member2group/:memberid/:groupid', async (req, res) => {
 		let memberId = req.params.memberid;
