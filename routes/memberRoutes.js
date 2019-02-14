@@ -24,8 +24,8 @@ module.exports = (app) => {
 		}
 	});
 
-	app.get('/api/members', requireLogin, cleanCache, async (req, res) => {
-		const members = await Member.find({}).sort({ firstName: 1 });
+	app.get('/api/members', cleanCache, async (req, res) => {
+		const members = await Member.find({}).sort({ firstName: 1 }).populate('groups');
 		try {
 			res.status(200).send(members);
 		} catch (error) {

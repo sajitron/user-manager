@@ -58,8 +58,10 @@ module.exports = (app) => {
 
 		selectGroup[0].members.push(member);
 
-		selectGroup[0].save();
+		member.groups.push(selectGroup[0]);
 
+		selectGroup[0].save();
+		member.save();
 		// console.log(`Member: ${memberId}, Group: ${groupId}`);
 
 		try {
