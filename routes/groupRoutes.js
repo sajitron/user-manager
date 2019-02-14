@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const { requireLogin, cleanCache } = require('../middlewares');
 
 const Group = mongoose.model('group');
+const Member = mongoose.model('member');
 
 // @TODO
 // Add requireLogin and cleanCache middlewares
@@ -38,6 +39,26 @@ module.exports = (app) => {
 
 		try {
 			res.status(200).send(group);
+		} catch (error) {
+			res.status(400).send(error);
+		}
+	});
+
+	// add member to group
+	app.get('/api/member2group/:memberid/:groupid', async (req, res) => {
+		let memberId = req.params.memberid;
+		let groupId = req.params.groupid;
+		let groups = await Group.find({});
+
+		let selectGroup = groups.filter((group) => {
+			return group._id.toString() === groupId.toString();
+		});
+
+		// console.log(`Member: ${memberId}, Group: ${groupId}`);
+		// let member = await Member.findById(memberId);
+
+		try {
+			res.status(200).send(selectGroup);
 		} catch (error) {
 			res.status(400).send(error);
 		}
