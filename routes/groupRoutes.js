@@ -23,8 +23,8 @@ module.exports = (app) => {
 		}
 	});
 
-	app.get('/api/groups', requireLogin, cleanCache, async (req, res) => {
-		const groups = await Group.find({}).sort({ name: 1 });
+	app.get('/api/groups', cleanCache, async (req, res) => {
+		const groups = await Group.find({}).sort({ name: 1 }).populate('members');
 		try {
 			res.status(200).send(groups);
 		} catch (error) {
@@ -54,11 +54,16 @@ module.exports = (app) => {
 			return group._id.toString() === groupId.toString();
 		});
 
+		let member = await Member.findById(memberId);
+
+		selectGroup[0].members.push(member);
+
+		selectGroup[0].save();
+
 		// console.log(`Member: ${memberId}, Group: ${groupId}`);
-		// let member = await Member.findById(memberId);
 
 		try {
-			res.status(200).send(selectGroup);
+			res.status(200).send(member);
 		} catch (error) {
 			res.status(400).send(error);
 		}
