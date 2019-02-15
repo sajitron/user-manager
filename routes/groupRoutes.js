@@ -50,9 +50,12 @@ module.exports = (app) => {
 
 		let member = await Member.findById(memberid);
 
+		// fetch all groups
 		let allGroups = await Group.find({});
+		// fetch groups member is a part of
 		let groups = await Group.find({ _id: { $in: member.groups } });
 
+		// return all groups member is not a part of
 		let uniqArr1 = allGroups.filter((obj) => {
 			return !groups.some((obj2) => {
 				return obj.name == obj2.name;
