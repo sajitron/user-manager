@@ -12,6 +12,7 @@ const keys = require('./config/keys');
 require('./models/User');
 require('./models/Member');
 require('./models/Group');
+require('./models/Cards');
 require('./services/passport');
 require('./services/cache');
 
@@ -19,6 +20,11 @@ mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI, {
 	useNewUrlParser: true
 });
+
+//* log mongoose connections
+mongoose.connection.on('connected', () => console.log('Mongoose Connected'));
+mongoose.connection.on('disconnected', () => console.log('Mongoose Disconnected'));
+mongoose.connection.on('error', (err) => console.error('Mongoose Error', err));
 
 const app = express();
 
@@ -42,6 +48,7 @@ require('./routes/memberRoutes')(app);
 require('./routes/groupRoutes')(app);
 require('./routes/dashboardRoutes')(app);
 require('./routes/uploadRoute')(app);
+require('./routes/cardRoutes')(app);
 
 if ([ 'production' ].includes(process.env.NODE_ENV)) {
 	app.use(express.static('client/build'));
